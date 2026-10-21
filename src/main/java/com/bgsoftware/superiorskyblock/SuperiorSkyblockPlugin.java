@@ -252,7 +252,7 @@ public class SuperiorSkyblockPlugin extends JavaPlugin implements SuperiorSkyblo
             } catch (RuntimeException ex) {
                 ManagerLoadException handlerError = new ManagerLoadException(ex, ManagerLoadException.ErrorLevel.SERVER_SHUTDOWN);
                 Log.error(handlerError, "An error occurred while preparing worlds:");
-                Bukkit.shutdown();
+                //Bukkit.shutdown();
                 return;
             }
 
@@ -326,7 +326,7 @@ public class SuperiorSkyblockPlugin extends JavaPlugin implements SuperiorSkyblo
             PluginEventsFactory.callSettingsUpdateEvent();
         } catch (Throwable error) {
             Log.error(error, "An unexpected error occurred while enabling the plugin:");
-            Bukkit.shutdown();
+            //Bukkit.shutdown();
         }
     }
 

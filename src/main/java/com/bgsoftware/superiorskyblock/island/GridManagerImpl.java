@@ -1042,7 +1042,7 @@ public class GridManagerImpl extends Manager implements GridManager {
             }
         } catch (IOException error) {
             Log.error(error, "An unexpected error occurred while loading grid:");
-            Bukkit.shutdown();
+            //Bukkit.shutdown();
         }
     }
 

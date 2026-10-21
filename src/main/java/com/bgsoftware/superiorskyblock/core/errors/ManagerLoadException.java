@@ -35,7 +35,7 @@ public class ManagerLoadException extends Exception {
         error.printStackTrace();
 
         if (error.getErrorLevel() == ErrorLevel.SERVER_SHUTDOWN) {
-            Bukkit.shutdown();
+            //Bukkit.shutdown();
             return false;
         }
 
