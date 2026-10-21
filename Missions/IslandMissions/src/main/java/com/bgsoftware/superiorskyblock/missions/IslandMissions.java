@@ -10,7 +10,6 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.missions.common.BuiltinMission;
 import com.bgsoftware.superiorskyblock.missions.island.DynamicRegisteredListener;
 import com.bgsoftware.superiorskyblock.missions.island.EventsHelper;
-import com.bgsoftware.superiorskyblock.missions.island.timings.ITimings;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Event;
@@ -91,8 +90,6 @@ public final class IslandMissions extends BuiltinMission<Boolean> implements Lis
             return;
 
         HandlerList handlerList = EventsHelper.getEventListeners(eventClass.asSubclass(Event.class));
-        ITimings timings = ITimings.of(plugin, "Plugin: " + plugin.getDescription().getFullName() +
-                " Event: DynamicRegisteredListener::" + eventName + "(" + eventClass.getSimpleName() + ")");
 
         Method getPlayerMethod = getMethodSilently(eventClass, "getPlayer");
         Method getTargetMethod = getMethodSilently(eventClass, "getTarget");
@@ -101,12 +98,6 @@ public final class IslandMissions extends BuiltinMission<Boolean> implements Lis
             try {
                 if (eventClass.isAssignableFrom(event.getClass()) &&
                         (event instanceof IslandEvent || event instanceof MissionCompleteEvent)) {
-                    boolean isAsync = event.isAsynchronous();
-
-                    if (!isAsync) {
-                        timings.startTiming();
-                    }
-
                     SuperiorPlayer superiorPlayer;
                     SuperiorPlayer targetPlayer;
 
@@ -120,10 +111,6 @@ public final class IslandMissions extends BuiltinMission<Boolean> implements Lis
                     }
 
                     tryComplete(event, superiorPlayer, targetPlayer, isTarget);
-
-                    if (!isAsync) {
-                        timings.stopTiming();
-                    }
                 }
             } catch (InvocationTargetException var4) {
                 throw new EventException(var4.getCause());

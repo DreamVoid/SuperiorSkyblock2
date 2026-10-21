@@ -4,9 +4,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.EventExecutor;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.TimedRegisteredListener;
+import org.bukkit.plugin.RegisteredListener;
 
-public class DynamicRegisteredListener extends TimedRegisteredListener {
+public class DynamicRegisteredListener extends RegisteredListener {
 
     private static final Listener EMPTY_LISTENER = new Listener() {
     };
